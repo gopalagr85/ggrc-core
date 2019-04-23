@@ -8,31 +8,33 @@
   isAttributesDisabled:from="isAttributesDisabled"
   class="ggrc-form ggrc-form-multiple-columns">
     {{#each items}}
-      <div class="ggrc-form-item {{#if_in attributeType 'input,text'}}ggrc-form-item--row{{else}}ggrc-form-item--column{{/if}}">
-        <inline-edit-control class="inline-edit-control"
-          (inline-save)="saveCustomAttributes(%event, %context)"
-          {instance}="instance"
-          {dropdown-options}="multiChoiceOptions"
-          dropdown-no-value="true"
-          {edit-mode}="editMode"
-          {is-edit-icon-denied}="isEditDenied"
-          {is-loading}="isSaving"
-          {value}="value"
-          {type}="attributeType"
-          {mandatory}="mandatory"
-          with-read-more="true">
-            <base-inline-control-title
-              {edit-mode}="editMode"
-              {is-edit-icon-denied}="isEditIconDenied"
-              (set-edit-mode-inline)="setEditModeInline(%event)">
-                <div class="info-pane__section-title {{#if mandatory}}form-label form-label__extended{{/if}}">
-                  {{title}}
-                  {{#if mandatory}}
-                    <i class="fa fa-asterisk"></i>
-                  {{/if}}
-                </div>
-            </base-inline-control-title>
-          </inline-edit-control>
+      <div class="ggrc-form-item">
+        <div class="{{#if_in attributeType 'input,text'}}ggrc-form-item__row{{else}}ggrc-form-item__multiple-row{{/if}}">
+          <inline-edit-control class="inline-edit-control"
+            (inline-save)="saveCustomAttributes(%event, %context)"
+            {instance}="instance"
+            {dropdown-options}="multiChoiceOptions"
+            dropdown-no-value="true"
+            {edit-mode}="editMode"
+            {is-edit-icon-denied}="isEditDenied"
+            {is-loading}="isSaving"
+            {value}="value"
+            {type}="attributeType"
+            {mandatory}="mandatory"
+            with-read-more="true">
+              <base-inline-control-title
+                {edit-mode}="editMode"
+                {is-edit-icon-denied}="isEditIconDenied"
+                (set-edit-mode-inline)="setEditModeInline(%event)">
+                  <div class="info-pane__section-title {{#if mandatory}}form-label form-label__extended{{/if}}">
+                    {{title}}
+                    {{#if mandatory}}
+                      <i class="fa fa-asterisk"></i>
+                    {{/if}}
+                  </div>
+              </base-inline-control-title>
+           </inline-edit-control>
+        </div>
       </div>
     {{/each}}
 </global-custom-attributes>
