@@ -3,45 +3,32 @@
     Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 }}
 {{#each items}}
-    <div class="ggrc-form-item {{#if_in attributeType 'input,text,multiselect'}}ggrc-form-item--row{{else}}ggrc-form-item--column{{/if}}">
-        <inline-edit-control class="inline-edit-control inline-edit-control--{{attributeType}}"
-            on:inlineSave="updateGlobalAttribute(scope.event, %context)"
-            instance:from="instance"
-            dropdownOptions:from="multiChoiceOptions"
-            dropdownClass:from="dropdownClass"
-            dropdownNoValue:from="true"
-            editMode:from="editMode"
-            isAllowEdit:from="isAllowEdit"
-            isLoading:from="isLoading"
-            value:from="value"
-            type:from="attributeType"
-            withReadMore:from="true"
-            mandatory:from="mandatory">
+    <div class="ggrc-form-item {{#if_in attributeType 'input,text'}}ggrc-form-item--row{{else}}ggrc-form-item--column{{/if}}">
+            <inline-edit-control class="inline-edit-control"
+                (inline-save)="updateGlobalAttribute(%event, %context)"
+                {instance}="instance"
+                {dropdown-options}="multiChoiceOptions"
+                {dropdown-class}="dropdownClass"
+                dropdown-no-value="true"
+                {edit-mode}="editMode"
+                {is-allow-edit}="isAllowEdit"
+                {is-loading}="isLoading"
+                {value}="value"
+                {type}="attributeType"
+                with-read-more="true">
                   <confirm-edit-action
-                      on:setEditMode="setEditModeInline(scope.event)"
-                      on:setInProgress="setInProgressState()"
-                      instance:from="instance"
-                      onStateChangeDfd:from="onStateChangeDfd"
-                      editMode:from="editMode">
+                      (set-edit-mode)="setEditModeInline(%event)"
+                      (set-in-progress)="setInProgressState()"
+                      {instance}="instance"
+                      {on-state-change-dfd}="onStateChangeDfd"
+                      {edit-mode}="editMode">
                         <base-inline-control-title
-                            editMode:from="editMode"
-                            isEditIconDenied:from="isEditDenied"
-                            on:setEditModeInline="confirmEdit()">
-                          <div class="ggrc-form__title">
-                            {{title}}
-                            {{#if mandatory}}
-                              <i class="fa fa-asterisk"></i>
-                            {{/if}}
-                          </div>
+                            {edit-mode}="editMode"
+                            {is-edit-icon-denied}="isEditDenied"
+                            (set-edit-mode-inline)="confirmEdit()">
+                          <div class="ggrc-form__title">{{title}}</div>
                         </base-inline-control-title>
                   </confirm-edit-action>
-                  {{#if helptext}}
-                    <div class="ggrc-form-item__small-text">
-                        <small>
-                          <em>{{helptext}}</em>
-                        </small>
-                    </div>
-                  {{/if}}
-        </inline-edit-control>
+            </inline-edit-control>
     </div>
 {{/each}}
