@@ -189,18 +189,16 @@
       &--column {
         flex-basis: 200px;
         width: 200px;
-        margin-right: 40px;    
-        flex-direction: column;
+        margin-right: 40px;
       }
 
       &--row {
         width: 100%;
       }
 
-      assessment-inline-item,
-      .inline-edit-control,
-      .expanded-area {
+      .inline-edit-control {
         width: 100%;
+
       }
     }
   }
