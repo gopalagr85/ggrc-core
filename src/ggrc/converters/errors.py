@@ -242,3 +242,6 @@ NON_ADMIN_ACCESS_ERROR = (u"Line {line}: You don't have permissions to use "
 STATE_WILL_BE_IGNORED = (u"Line {line}: State will be set to 'In progress' "
                          u"due to change of verifier/creator/assignee. "
                          u"Column 'State' will be ignored.")
+
+SNAPSHOT_IMPORT_WARNING = u"Line {line}: Import for {object_name} object is not available in GGRC."
+

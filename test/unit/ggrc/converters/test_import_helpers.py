@@ -185,3 +185,29 @@ class TestModelColumntHandler(unittest.TestCase):
       self.assertEqual(
           {"col_a": test_custom_handler, "col_b": test_handler},
           model_column_handlers(test_custom_class))
+
+
+class TestCountObjects(unittest.TestCase):
+  """Class for testing the count_objects function
+  """
+
+  def test_snapshot_object(self):
+    """Test snapshot object count
+
+    The array represents a read csv file with no lines that contain only
+    commas.
+    """
+    test_data = [
+      ['Object type', '', '', '', '', '', '', '', '', '', '', ''],
+      ['snapshot', 'Code', 'Audit', 'Revision Date', 'Title', 'Description', 'Notes', 'Assessment Procedure',
+       'Effective Date', 'Last Deprecated', 'Archived', 'State'],
+      ['', '*OBJECTIVE-2', 'AUDIT-2', '7/22/2019', 'Objective Test1', 'new test description', '', 'new test procedure',
+       '', '', 'no', 'Draft']
+    ]
+    counts, blocks_info, failed = import_helper.count_objects(test_data)
+    self.assertEqual(len(counts), 0)
+    self.assertEqual(blocks_info[0]['block_errors'][0],
+                     "Line 2: Object type 'snapshot' doesn't exist or can't be imported.")
+    self.assertEqual(blocks_info[0]['block_warnings'][0],
+                     "Line 2: Import for snapshot object is not available in GGRC.")
+    self.assertEqual(failed, True)
