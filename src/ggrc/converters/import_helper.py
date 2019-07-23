@@ -200,6 +200,8 @@ def count_objects(csv_data):
     }
     if error:
       info["block_errors"].append(errors.WRONG_OBJECT_TYPE.format(**error))
+    if name.lower() == 'snapshot':
+      info["block_warnings"].append(errors.SNAPSHOT_IMPORT_WARNING.format(**error))
     return info
 
   exportables = get_exportables()
@@ -211,7 +213,15 @@ def count_objects(csv_data):
     class_name = data[1][0].strip().lower()
     object_class = exportables.get(class_name, "")
     rows = len(data) - 2
-    if object_class:
+
+    if object_class != '' and object_class.__name__.lower() == 'snapshot':
+      object_name = object_class.__name__
+      blocks_info.append(get_info(object_name, rows,
+                                  line=offset + 2,
+                                  object_name=class_name))
+      failed = True
+
+    elif object_class:
       object_name = object_class.__name__
       blocks_info.append(get_info(object_name, rows))
       counts[object_name] = counts.get(object_name, 0) + rows
