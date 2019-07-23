@@ -220,6 +220,7 @@ NO_VERIFIER_WARNING = (u"Line {line}: Assessment without verifier cannot "
                        u"be moved to {status} state. "
                        u"The value will be ignored.")
 
+<<<<<<< HEAD
 UNEXPECTED_ERROR = u"Unexpected error on import."
 
 EXTERNAL_MODEL_IMPORT_RESTRICTION = (u"Line {line}: Import for "
@@ -244,4 +245,3 @@ STATE_WILL_BE_IGNORED = (u"Line {line}: State will be set to 'In progress' "
                          u"Column 'State' will be ignored.")
 
 SNAPSHOT_IMPORT_WARNING = u"Line {line}: Import for {object_name} object is not available in GGRC."
-
