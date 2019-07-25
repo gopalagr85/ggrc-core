@@ -558,10 +558,28 @@ class MappingColumnHandler(ColumnHandler):
     """Add warning if we have changes mappings """
     mapping = all_models.Relationship.find_related(source, destination)
 
+    src_object_type = source.__class__.__name__
+    dest_object_type = destination.__class__.__name__
+    mapping_error = None
+    _SCOPING_MODELS = [scope_model.__name__
+                       for scope_model in all_models.get_scope_models()]
+
+    if (src_object_type in _SCOPING_MODELS and
+       dest_object_type in ["Control", "Risk", "Regulation", "Standard"]):
+      mapping_error = errors.MAP_UNMAP_SCOPE_ERROR
+    elif (src_object_type == "Regulation" and
+          dest_object_type in ["Control", "Risk"] + _SCOPING_MODELS):
+      mapping_error = errors.MAP_UNMAP_REGULATION_ERROR
+    elif (src_object_type == "Standard" and
+          dest_object_type in ["Control", "Risk"] + _SCOPING_MODELS):
+      mapping_error = errors.MAP_UNMAP_STANDARD_ERROR
+    else:
+      mapping_error = errors.MAP_UNMAP_SCOPE_ERROR
+
     if (self.unmap and mapping) or (not self.unmap and not mapping):
       self.add_warning(
-          errors.MAPPING_SCOPING_ERROR,
-          object_type=destination.__class__.__name__,
+          mapping_error,
+          object_type=dest_object_type,
           action="unmap" if self.unmap else "map"
       )
 

@@ -22,12 +22,12 @@ class TestMetricsImport(TestCase):
     self._check_csv_response(response, {
         "Metric": {
             "row_warnings": {
-                errors.MAPPING_SCOPING_ERROR.format(
+                errors.MAP_UNMAP_SCOPE_ERROR.format(
                     line=14,
                     object_type="Regulation",
                     action="map",
                 ),
-                errors.MAPPING_SCOPING_ERROR.format(
+                errors.MAP_UNMAP_SCOPE_ERROR.format(
                     line=15,
                     object_type="Standard",
                     action="map",

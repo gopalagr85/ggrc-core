@@ -726,3 +726,17 @@ canStache.registerHelper('isArray', (items, options) => {
     options.fn(options.contexts) :
     options.inverse(options.contexts);
 });
+
+canStache.registerHelper('isTextLarge', (data, options) => {
+  const lengthThreshold = 100;
+
+  data = isFunction(data) ? data() : data;
+
+  if (!data) {
+    return options.inverse(options.contexts);
+  }
+
+  return data.length > lengthThreshold ?
+    options.fn(data):
+    options.inverse(options.contexts);
+});

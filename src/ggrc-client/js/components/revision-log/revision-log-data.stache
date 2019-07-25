@@ -8,9 +8,27 @@
 {{else}}
     {{#if isObject}}
         {{#each data}}
-            <div>{{{.}}}</div>
+            <div>
+              {{#isTextLarge .}}
+                <read-more
+                  text:from="."
+                  handleMarkdown:from="instance.constructor.isChangeableExternally">
+                </read-more>
+              {{else}}
+                {{{.}}}
+              {{/isTextLarge}}
+            </div>
         {{/each}}
     {{else}}
-        <div>{{{data}}}</div>
+        <div>
+          {{#isTextLarge data}}
+            <read-more
+              text:from="data"
+              handleMarkdown:from="instance.constructor.isChangeableExternally">
+            </read-more>
+          {{else}}
+            {{{data}}}
+          {{/isTextLarge}}
+        </div>
     {{/if}}
 {{/if}}

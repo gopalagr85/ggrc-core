@@ -11,14 +11,22 @@
     <div class="flex-size-1 object-history__attr">
       {{#currentVal}}
         <div>
-          {{{.}}}
+          {{#isTextLarge .}}
+            <read-more text:from="."></read-more>
+          {{else}}
+            {{{.}}}
+          {{/isTextLarge}}
         </div>
       {{/currentVal}}
     </div>
     <div class="flex-size-1 object-history__attr">
       {{#modifiedVal}}
         <div>
-          {{{.}}}
+          {{#isTextLarge .}}
+            <read-more text:from="."></read-more>
+          {{else}}
+            {{{.}}}
+          {{/isTextLarge}}
         </div>
       {{/modifiedVal}}
     </div>

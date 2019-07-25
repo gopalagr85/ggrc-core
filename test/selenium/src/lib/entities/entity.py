@@ -809,7 +809,7 @@ class AuditEntity(Entity):
     self.delete_attrs(
         "admins", "primary_contacts", "secondary_contacts", "comments")
     self.set_attrs(
-        "audit_captains", "auditors", "program", **attrs)
+        "audit_captains", "auditors", "program", "manual_snapshots", **attrs)
 
 
 class AssessmentTemplateEntity(Entity):

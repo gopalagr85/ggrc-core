@@ -25,6 +25,7 @@ def get_modal_obj(obj_type, _selenium=None):
       "workflow": WorkflowModal,
       "task_group_task": TaskGroupTaskModal,
       "task_group": TaskGroupModal,
+      "audit": AuditModal,
       "regulation": RegulationModal
   }
   return mapping.get(obj_type.lower(), BaseObjectModal)()
@@ -41,7 +42,8 @@ _FIELD_METHOD_MAPPING = {
     "start_date": "set_start_date",  # task
     "due_date": "set_due_date",  # task
     "risk_type": "set_risk_type",
-    "repeat_unit": "set_repeat_workflow"
+    "repeat_unit": "set_repeat_workflow",
+    "manual_snapshots": "set_manually_map_snapshots",
 }
 
 
@@ -321,3 +323,16 @@ class WarningModal(CommonConfirmModal):
     """Clicks 'Proceed in new tab' button on modal object."""
     self.proceed_in_new_tab_btn.wait_until_present()
     self.proceed_in_new_tab_btn.click()
+
+
+class AuditModal(BaseObjectModal):
+  """Represents audit object modal."""
+
+  def __init__(self, _driver=None):
+    super(AuditModal, self).__init__()
+    self._fields = ["title", "description", "status", "slug",
+                    "manual_snapshots"]
+
+  def set_manually_map_snapshots(self, value):
+    """Set "Manually map snapshots" checkbox to specified state."""
+    self._root.label(text="Manually map snapshots").checkbox().set(bool(value))

@@ -38,7 +38,7 @@
 
 </div>
 <div class="flex-size-1 object-history__attr">
-  {{{proposal.agenda}}}
+  <read-more text:from="proposal.agenda"></read-more>
 </div>
 <div class="flex-size-1">
   {{#is_allowed 'update' instance}}

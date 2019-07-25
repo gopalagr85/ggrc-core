@@ -16,7 +16,7 @@ from lib.constants import messages, objects, object_states, roles
 from lib.constants.element import Lhn, MappingStatusAttrs
 from lib.entities.entity import Representation
 from lib.factory import get_cls_webui_service, get_cls_rest_service
-from lib.service import webui_service, rest_facade
+from lib.service import rest_facade, webui_facade, webui_service
 from lib.utils.filter_utils import FilterUtils
 
 
@@ -413,7 +413,6 @@ class TestSnapshots(base.Test):
                 expected_controls_from_tree_view,
                 actual_controls_from_tree_view)))
 
-  @pytest.mark.skip(reason="GGRC-4734. Fails in dev branch")
   @pytest.mark.smoke_tests
   def test_destructive_mapping_control_to_existing_audit(
       self, program, audit, control, selenium
@@ -760,3 +759,18 @@ class TestSnapshots(base.Test):
         messages.AssertionMessages.format_err_msg_equal(
             expected_objs_types_from_add_widget,
             actual_objs_types_from_add_widget))
+
+  def test_create_audit_with_manually_mapping_snapshots(
+      self, program, control_mapped_to_program, selenium
+  ):
+    """Check that newly created audit with manually mapping snapshots doesn't
+    have snapshots.
+    Steps:
+    - Create program via rest
+    - Create control mapped to program via rest
+    - Create audit with checked "Manually map snapshots"
+    - Check that newly created audit doesn't have snapshots"""
+    actual_count = webui_facade.get_controls_snapshots_count(
+        selenium, webui_facade.create_audit(
+            selenium, program, manual_snapshots=True))
+    assert actual_count == {"controls_tab_count": 0, "controls_count": 0}

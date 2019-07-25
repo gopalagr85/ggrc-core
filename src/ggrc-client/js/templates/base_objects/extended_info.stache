@@ -20,7 +20,10 @@
     <div class="span12">
       <h6>Description</h6>
       <div class="rtf">
-        {{{firstnonempty description '<span class="empty-message">None</span>'}}}
+        <read-more
+          text:from="description"
+          handleMarkdown:from="constructor.isChangeableExternally">
+        </read-more>
       </div>
     </div>
   </div>

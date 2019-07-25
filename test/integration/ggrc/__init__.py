@@ -62,6 +62,27 @@ READONLY_MAPPING_PAIRS.extend(
                                                   )
 )
 
+MAPPING_SCOPE_PAIRS = list(
+    itertools.product((all_models.Standard,
+                       all_models.Regulation,
+                       all_models.Control,
+                       all_models.Risk), _SCOPING_MODELS)
+)
+
+MAPPING_REGULATION_PAIRS = list(
+    itertools.product(_SCOPING_MODELS + [all_models.Control,
+                                         all_models.Risk],
+                                        [all_models.Regulation]
+                      )
+)
+
+MAPPING_STANDARD_PAIRS = list(
+    itertools.product(_SCOPING_MODELS + [all_models.Control,
+                                         all_models.Risk],
+                                        [all_models.Standard]
+                      )
+)
+
 
 def read_imported_file(file_data):  # pylint: disable=unused-argument
   csv_file = check_import_file()

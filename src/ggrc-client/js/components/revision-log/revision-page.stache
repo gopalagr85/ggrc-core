@@ -38,7 +38,14 @@
           {{#changes}}
             <div class="clearfix {{#if isRole}}role-row{{/if}}">
               <div class="third-col revision-log__field-name">
-                {{{fieldName}}}
+                {{#isTextLarge fieldName}}
+                  <read-more
+                    text:from="fieldName"
+                    handleMarkdown:from="instance.constructor.isChangeableExternally">
+                  </read-more>
+                {{else}}
+                  {{{fieldName}}}
+                {{/isTextLarge}}
               </div>
               <div class="third-col">
                 <revision-log-data isLoading:from="isLoading" data:from="origVal"></revision-log-data>

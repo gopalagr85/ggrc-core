@@ -102,11 +102,26 @@ UNSUPPORTED_MAPPING = (u"Line {line}: You are not able to map/unmap "
                        u"{obj_a} to {obj_b} via import. "
                        u"The column '{column_name}' will be skipped.")
 
-MAPPING_SCOPING_ERROR = (u"Line {line}: You do not have the necessary "
-                         u"permissions to {action} scoping objects to "
-                         u"directives in this application. Please contact "
-                         u"your administrator if you have any questions. "
-                         u"Column '{action}:{object_type}' will be ignored.")
+MAP_UNMAP_SCOPE_ERROR = (u"Line {line}: Mapping and unmapping of Control, "
+                         u"Risk, Regulation, Standard objects to Scope "
+                         u"objects is not available in GGRC system "
+                         u"anymore. Go to new frontend to perform import "
+                         u"there. Columns 'map:{object_type}' and "
+                         u"'unmap:{object_type}' will be ignored.")
+
+MAP_UNMAP_REGULATION_ERROR = (u"Line {line}: Mapping and unmapping of "
+                              u"Control, Risk, Scope objects to Regulation "
+                              u"objects is not available in GGRC system "
+                              u"anymore. Go to new frontend to perform "
+                              u"import there. Columns 'map:{object_type}' "
+                              u"and 'unmap:{object_type}' will be ignored.")
+
+MAP_UNMAP_STANDARD_ERROR = (u"Line {line}: Mapping and unmapping of "
+                            u"Control, Risk, Scope objects to Standard "
+                            u"objects is not available in GGRC system "
+                            u"anymore. Go to new frontend to perform "
+                            u"import there. Columns 'map:{object_type}' "
+                            u"and 'unmap:{object_type}' will be ignored.")
 
 DELETE_NEW_OBJECT_ERROR = (u"Line {line}: Tried to create and delete the same"
                            u" object {object_type}: {slug} in one import.")

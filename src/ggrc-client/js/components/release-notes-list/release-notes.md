@@ -1,8 +1,10 @@
-[//]: <> (updated 07/16/2019)
+[//]: <> (updated 07/23/2019)
 
 Our product team is working hard to engineer compliance @ scale and make your day to day user journeys easier. We have been adding key capabilities to the product as listed here below.
 
-[New rules for Ticket Tracker integration for Assessments (v2.8.0, 07/16/2019)](https://docs.google.com/document/d/1Tm1nRVDIgUArjezZSnCvcwCm3gLcXdB6wRJKUaF6VUA/edit?ts=5d10d7f4#heading=h.uqfpjeprd5w4)
+[Ability to save searches (v2.9.0, 07/23/2019)](https://docs.google.com/document/d/1Tm1nRVDIgUArjezZSnCvcwCm3gLcXdB6wRJKUaF6VUA/edit?ts=5d10d7f4#heading=h.lfwcfv31r7io)
+
+[New rules for Ticket Tracker integration for Assessments (v2.8.0, 07/16/2019)](https://docs.google.com/document/d/1Tm1nRVDIgUArjezZSnCvcwCm3gLcXdB6wRJKUaF6VUA/edit?ts=5d10d7f4#heading=h.sq79fj5p01v6)
 
 [Custom Attributes of the Person type are no longer available  (v2.8.0, 07/16/2019)](https://docs.google.com/document/d/1Tm1nRVDIgUArjezZSnCvcwCm3gLcXdB6wRJKUaF6VUA/edit?ts=5d10d7f4#heading=h.t4zaayd0kt5s)
 
@@ -107,6 +109,10 @@ Our product team is working hard to engineer compliance @ scale and make your da
 [Linking assessments with other issue tracking systems (v0.10.36, 12/12/2017)](https://docs.google.com/document/d/1Tm1nRVDIgUArjezZSnCvcwCm3gLcXdB6wRJKUaF6VUA/edit?ts=5d10d7f4#heading=h.9ry21bbez6aa)
 
 [Performance improvements](https://docs.google.com/document/d/1Tm1nRVDIgUArjezZSnCvcwCm3gLcXdB6wRJKUaF6VUA/edit?ts=5d10d7f4#heading=h.m9vl04nitn8)
+
+### Ability to save searches (v2.9.0, 07/23/2019)
+
+Now you can save search criteria in the Global Search and Advanced Search dialog boxes. It allows you to avoid manually setting the same search criteria again every time when you need to perform a search.
 
 ### New rules for Ticket Tracker integration for Assessments (v2.8.0, 07/16/2019)
 

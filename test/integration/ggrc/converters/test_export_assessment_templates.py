@@ -31,7 +31,9 @@ class TestAssessmentTemplatesExport(TestCase):
       ("Audit Captain", "Audit Lead"),
       ("Auditors", "Auditors"),
       ("Principal Assignees", "Principal Assignees"),
-      ("Secondary Assignees", "Secondary Assignees")
+      ("Secondary Assignees", "Secondary Assignees"),
+      ("Primary Contacts", "Primary Contacts"),
+      ("Secondary Contacts", "Secondary Contacts")
   )
   @ddt.unpack
   def test_people_labels_export(self, title, label):

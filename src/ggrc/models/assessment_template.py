@@ -29,6 +29,22 @@ from ggrc.fulltext.mixin import Indexed
 from ggrc.rbac.permissions import permissions_for
 
 
+def _hint_verifier_assignees(actual_people_label, control_people_label,
+                             risk_people_label):
+  """Returns description default verifiers/assignees fields"""
+
+  description = "For all Assessment Types except of " \
+                "Control and Risk options are:\n{}\nuser@example.com\n" \
+                "For Assessment type of Control options are:\n{}\n" \
+                "user@example.com\n" \
+                "For Assessment type of Risk options are:\n{}\n" \
+                "user@example.com".format(
+                    "\n".join(actual_people_label.values()),
+                    "\n".join(control_people_label.values()),
+                    "\n".join(risk_people_label.values()))
+  return description
+
+
 class AssessmentTemplate(assessment.AuditRelationship,
                          relationship.Relatable,
                          mixins.Titled,
@@ -78,8 +94,45 @@ class AssessmentTemplate(assessment.AuditRelationship,
       ("Auditors", "Auditors"),
       ("Principal Assignees", "Principal Assignees"),
       ("Secondary Assignees", "Secondary Assignees"),
+      ("Primary Contacts", "Primary Contacts"),
+      ("Secondary Contacts", "Secondary Contacts"),
       ("Control Operators", "Control Operators"),
       ("Control Owners", "Control Owners"),
+      ("Risk Owners", "Risk Owners"),
+      ("Other Contacts", "Other Contacts"),
+  ])
+
+  # labels to show as hint all Assessment Types except of Control and Risk
+  _DEFAULT_PEOPLE_LABELS_ACTUAL = OrderedDict([
+      ("Admin", "Object Admins"),
+      ("Audit Lead", "Audit Captain"),
+      ("Auditors", "Auditors"),
+      ("Principal Assignees", "Principal Assignees"),
+      ("Secondary Assignees", "Secondary Assignees"),
+      ("Primary Contacts", "Primary Contacts"),
+      ("Secondary Contacts", "Secondary Contacts"),
+      ("Other Contacts", "Other Contacts"),
+  ])
+
+  # labels to show as hint in Default Assignees/Verifiers for Control
+  _DEFAULT_PEOPLE_LABELS_CONTROL = OrderedDict([
+      ("Admin", "Object Admins"),
+      ("Audit Lead", "Audit Captain"),
+      ("Auditors", "Auditors"),
+      ("Principal Assignees", "Principal Assignees"),
+      ("Secondary Assignees", "Secondary Assignees"),
+      ("Control Operators", "Control Operators"),
+      ("Control Owners", "Control Owners"),
+      ("Other Contacts", "Other Contacts"),
+  ])
+
+  # labels to show as hint in Default Assignees/Verifiers for Risk
+  _DEFAULT_PEOPLE_LABELS_RISK = OrderedDict([
+      ("Admin", "Object Admins"),
+      ("Audit Lead", "Audit Captain"),
+      ("Auditors", "Auditors"),
+      ("Principal Assignees", "Principal Assignees"),
+      ("Secondary Assignees", "Secondary Assignees"),
       ("Risk Owners", "Risk Owners"),
       ("Other Contacts", "Other Contacts"),
   ])
@@ -123,17 +176,21 @@ class AssessmentTemplate(assessment.AuditRelationship,
           "display_name": "Default Assignees",
           "mandatory": True,
           "filter_by": "_nop_filter",
-          "description": "Options are:\n{}\nuser@example.com".format(
-              '\n'.join(DEFAULT_PEOPLE_LABELS.values())
-          ),
+          "description": _hint_verifier_assignees(
+              _DEFAULT_PEOPLE_LABELS_ACTUAL,
+              _DEFAULT_PEOPLE_LABELS_CONTROL,
+              _DEFAULT_PEOPLE_LABELS_RISK,
+          )
       },
       "default_verifier": {
           "display_name": "Default Verifiers",
           "mandatory": False,
           "filter_by": "_nop_filter",
-          "description": "Options are:\n{}\nuser@example.com".format(
-              '\n'.join(DEFAULT_PEOPLE_LABELS.values())
-          ),
+          "description": _hint_verifier_assignees(
+              _DEFAULT_PEOPLE_LABELS_ACTUAL,
+              _DEFAULT_PEOPLE_LABELS_CONTROL,
+              _DEFAULT_PEOPLE_LABELS_RISK,
+          )
       },
       "procedure_description": {
           "display_name": "Default Assessment Procedure",
