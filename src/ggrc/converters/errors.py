@@ -235,7 +235,6 @@ NO_VERIFIER_WARNING = (u"Line {line}: Assessment without verifier cannot "
                        u"be moved to {status} state. "
                        u"The value will be ignored.")
 
-<<<<<<< HEAD
 UNEXPECTED_ERROR = u"Unexpected error on import."
 
 EXTERNAL_MODEL_IMPORT_RESTRICTION = (u"Line {line}: Import for "
